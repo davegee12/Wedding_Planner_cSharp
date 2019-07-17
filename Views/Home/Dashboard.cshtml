@@ -1,0 +1,45 @@
+@model List<Wedding>
+
+<h1 style="text-align: center;">Welcome to the Wedding Planner</h1>
+<a href="/logout"><button class="btn btn-primary">Log Out!</button></a>
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+        <th scope="col">Wedding</th>
+        <th scope="col">Date</th>
+        <th scope="col">Guests</th>
+        <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var wedding in @Model)
+        {
+            <tr>
+            <th scope="row"><a href="/@wedding.WeddingId"> @wedding.Wedder1 & @wedding.Wedder2 </a></th>
+            <td>@wedding.WeddingDate</td>
+            <td>@wedding.GuestList.Count</td>
+
+            @if (@ViewBag.LoggedInUser.RegUserId == @wedding.RegUserId)
+            {
+                <td> <a href="/@wedding.WeddingId/delete"><button class="btn btn-primary">Delete</button></a> </td>
+            }
+            else
+            {
+                @if (wedding.GuestList.Any(rsvp => rsvp.RegUserId == ViewBag.LoggedInUser.RegUserId) || wedding.GuestList.Count() == 0)
+                {
+                    <td> <a href="/@wedding.WeddingId/remove/guest"><button class="btn btn-primary">Un-RSVP</button></a> </td>
+                }
+                else
+                {
+                    <td> <a asp-action="AddGuestToGuestList" asp-controller="Home" asp-route-id="@wedding.WeddingId"><button class="btn btn-primary">RSVP</button></a> </td>
+                }
+            }
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="new/wedding"><button class="btn btn-primary">New Wedding</button></a>

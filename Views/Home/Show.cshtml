@@ -1,0 +1,19 @@
+@using WeddingPlanner.Models
+@model List<RSVP>
+
+
+<a href="/dashboard"><button class="btn btn-primary">Dashboard</button></a>
+<a href="/logout"><button class="btn btn-primary">Log Out!</button></a>
+
+<h1 style="text-align: center;">@ViewBag.ThisWedding.Wedder1 & @ViewBag.ThisWedding.Wedder2's Wedding!</h1>
+
+<h2 style="text-align: center;">@ViewBag.ThisWedding.WeddingDate</h2>
+
+<h3 style="text-align: center;">@ViewBag.ThisWedding.Address</h3>
+
+<h2 style="text-align: center;">Guests Attending:</h2>
+
+@foreach (var item in @ViewBag.GuestList)
+{
+    <h4 style="text-align: center;">@item.Guest.FName @item.Guest.LName</h4>
+}

@@ -1,0 +1,32 @@
+@using WeddingPlanner.Models
+@model Wedding
+
+<a href="/dashboard"><button class="btn btn-primary">Dashboard</button></a>
+<a href="/logout"><button class="btn btn-primary">Log Out!</button></a>
+
+<h1 style="text-align: center;">Plan Your Wedding</h1>
+
+<form asp-action="CreateWedding" asp-controller="Home" method="post">
+    <div class="form-group">
+        <span style="color: red;" asp-validation-for="Wedder1"></span>
+        <label asp-for="Wedder1" for="exampleInputEmail1">Name One:</label>
+        <input asp-for="Wedder1" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name one">
+    </div>
+    <div class="form-group">
+        <span style="color: red;" asp-validation-for="Wedder2"></span>
+        <label asp-for="Wedder2" for="exampleInputEmail1">Name Two:</label>
+        <input asp-for="Wedder2" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name two">
+    </div>
+    <div class="form-group">
+        <span style="color: red;" asp-validation-for="WeddingDate"></span>
+        <label asp-for="WeddingDate" for="exampleInputEmail1">Date of Wedding:</label>
+        <input asp-for="WeddingDate" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="form-group">
+        <span style="color: red;" asp-validation-for="Address"></span>
+        <label asp-for="Address" for="exampleInputEmail1">Wedding Address:</label>
+        <input asp-for="Address" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter address of wedding">
+    </div>
+
+    <p class="text-center"><button type="submit" class="btn btn-primary">Create</button></p>
+</form>
